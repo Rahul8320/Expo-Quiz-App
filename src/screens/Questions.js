@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Alert, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { reactQuestions } from "../config/questions";
 import tw from "twrnc";
+import * as Progress from "react-native-progress";
 
 const QuestionsScreen = ({ navigation }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -9,6 +10,7 @@ const QuestionsScreen = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
   const [score, setScore] = useState(0);
+  const [quizProgress, setQuizProgress] = useState(0);
 
   const handleNextQuestion = () => {
     if (reactQuestions.length - 1 > currentQuestionIndex) {
@@ -35,10 +37,21 @@ const QuestionsScreen = ({ navigation }) => {
     if (currentQuestionIndex === reactQuestions.length - 1) {
       setIsLastQuestion(true);
     }
+
+    const progress = (currentQuestionIndex + 1) / reactQuestions.length;
+    setQuizProgress(progress);
   }, [currentQuestionIndex]);
 
   return (
     <View style={tw`mt-2 p-4`}>
+      <View style={`flex-1`}>
+        <Progress.Bar
+          progress={quizProgress}
+          width={null}
+          height={7}
+          color={"#b814e5"}
+        />
+      </View>
       <Text style={tw`text-2xl font-medium text-center my-5`}>
         {reactQuestions[currentQuestionIndex].question}
       </Text>
