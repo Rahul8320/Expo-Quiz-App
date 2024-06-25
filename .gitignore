@@ -33,3 +33,6 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+.vscode
+assets/images/splash.jpg:Zone.Identifier
