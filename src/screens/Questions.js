@@ -1,16 +1,9 @@
 import { useEffect, useState } from "react";
-import {
-  Alert,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import { reactQuestions } from "../config/questions";
 import tw from "twrnc";
 
-const QuestionsScreen = () => {
+const QuestionsScreen = ({ navigation }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -23,7 +16,7 @@ const QuestionsScreen = () => {
       setSelectedOption(null);
       setIsCorrectAnswer(false);
     } else {
-      Alert.alert(`Score: ${score} / ${reactQuestions.length * 10}`);
+      navigation.navigate("Score", { score });
     }
   };
 
@@ -90,5 +83,3 @@ const QuestionsScreen = () => {
 };
 
 export default QuestionsScreen;
-
-const styles = StyleSheet.create({});

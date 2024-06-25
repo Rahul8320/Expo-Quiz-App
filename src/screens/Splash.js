@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import tw from "twrnc";
 
 const SplashScreen = ({ navigation }) => {
@@ -6,7 +6,7 @@ const SplashScreen = ({ navigation }) => {
     <View style={tw`flex-1 items-center`}>
       <Image
         source={require("../../assets/images/splash.jpg")}
-        style={tw.style(tw`h-3/6 mx-1 rounded-xl`, { aspectRatio: 1 })}
+        style={tw.style(tw`h-1/2 mx-auto rounded-xl`, { aspectRatio: 1 })}
       />
 
       <Text style={tw`text-2xl text-center font-semibold my-5`}>
@@ -25,7 +25,7 @@ const SplashScreen = ({ navigation }) => {
       </View>
 
       <TouchableOpacity
-        style={tw`bg-purple-600 mt-10 px-8 py-2 rounded-md shadow-md`}
+        style={tw`bg-purple-600 mt-10 px-12 py-3 rounded-md shadow-md`}
         onPress={() => navigation.navigate("Question")}
       >
         <Text style={tw`text-white text-lg font-medium`}>Start</Text>
@@ -35,5 +35,3 @@ const SplashScreen = ({ navigation }) => {
 };
 
 export default SplashScreen;
-
-const styles = StyleSheet.create({});
