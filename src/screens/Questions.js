@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { reactQuestions } from "../config/questions";
 import tw from "twrnc";
 import * as Progress from "react-native-progress";
+import { AppContext } from "../context/AppContext";
 
 const QuestionsScreen = ({ navigation }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
-  const [score, setScore] = useState(0);
   const [quizProgress, setQuizProgress] = useState(0);
+  const { setScore } = useContext(AppContext);
 
   const handleNextQuestion = () => {
     if (reactQuestions.length - 1 > currentQuestionIndex) {
@@ -18,7 +19,7 @@ const QuestionsScreen = ({ navigation }) => {
       setSelectedOption(null);
       setIsCorrectAnswer(false);
     } else {
-      navigation.navigate("Score", { score });
+      navigation.navigate("Score");
     }
   };
 

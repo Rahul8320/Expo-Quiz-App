@@ -1,7 +1,16 @@
+import { useContext } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import tw from "twrnc";
+import { AppContext } from "../context/AppContext";
 
 const SplashScreen = ({ navigation }) => {
+  const { setScore } = useContext(AppContext);
+
+  const handleStart = () => {
+    setScore(0);
+    navigation.navigate("Question");
+  };
+
   return (
     <View style={tw`flex-1 items-center`}>
       <Image
@@ -26,7 +35,7 @@ const SplashScreen = ({ navigation }) => {
 
       <TouchableOpacity
         style={tw`bg-purple-600 mt-10 px-12 py-3 rounded-md shadow-md`}
-        onPress={() => navigation.navigate("Question")}
+        onPress={handleStart}
       >
         <Text style={tw`text-white text-lg font-medium`}>Start</Text>
       </TouchableOpacity>

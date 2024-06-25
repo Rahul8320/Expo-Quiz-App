@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import tw from "twrnc";
+import { AppContext } from "../context/AppContext";
 
-const ScoreScreen = ({ route, navigation }) => {
-  const { score } = route.params;
+const ScoreScreen = ({ navigation }) => {
+  const { score } = useContext(AppContext);
 
   return (
     <View style={tw`flex-1 items-center`}>
