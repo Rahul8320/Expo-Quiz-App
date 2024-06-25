@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import tw from "twrnc";
 
 const SplashScreen = ({ navigation }) => {
@@ -13,7 +13,7 @@ const SplashScreen = ({ navigation }) => {
         Instructions
       </Text>
       <View
-        style={tw`bg-purple-600 m-2 p-3 rounded-md h-30 w-80 items-center justify-center`}
+        style={tw`bg-purple-500 m-2 p-3 rounded-md h-30 w-80 items-center justify-center`}
       >
         <Text style={tw`text-white text-lg`}>Each quiz has Four Options</Text>
         <Text style={tw`text-white text-lg my-1`}>
@@ -24,12 +24,12 @@ const SplashScreen = ({ navigation }) => {
         </Text>
       </View>
 
-      <Pressable
+      <TouchableOpacity
         style={tw`bg-purple-600 mt-10 px-8 py-2 rounded-md shadow-md`}
         onPress={() => navigation.navigate("Question")}
       >
         <Text style={tw`text-white text-lg font-medium`}>Start</Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };
