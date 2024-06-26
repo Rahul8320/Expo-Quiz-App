@@ -8,7 +8,7 @@ const SplashScreen = ({ navigation }) => {
 
   const handleStart = () => {
     setScore(0);
-    navigation.navigate("Question");
+    navigation.navigate("Category");
   };
 
   return (

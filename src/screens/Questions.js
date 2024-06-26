@@ -6,7 +6,7 @@ import { AppContext } from "../context/AppContext";
 import useFetchQuiz from "../hooks/useFetchQuiz";
 import he from "he";
 
-const QuestionsScreen = ({ navigation }) => {
+const QuestionsScreen = ({ navigation, route }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -14,7 +14,9 @@ const QuestionsScreen = ({ navigation }) => {
   const [quizProgress, setQuizProgress] = useState(0.1);
   const { setScore } = useContext(AppContext);
 
-  const { data, error, loading } = useFetchQuiz();
+  const { categoryId } = route.params;
+
+  const { data, error, loading } = useFetchQuiz(categoryId);
 
   const handleNextQuestion = () => {
     if (data?.length - 1 > currentQuestionIndex) {
@@ -58,8 +60,10 @@ const QuestionsScreen = ({ navigation }) => {
 
   if (error) {
     return (
-      <View>
-        <Text>Error: {error}</Text>
+      <View style={tw`flex-1 justify-center items-center mx-5`}>
+        <Text style={tw`text-2xl text-red-500 font-medium`}>
+          Error: {error}
+        </Text>
       </View>
     );
   }

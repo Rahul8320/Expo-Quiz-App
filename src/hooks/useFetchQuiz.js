@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ApiConfig } from "../config/apiConfig";
 import { shuffleQuizAnswer } from "../utils/shuffleQuizAns";
 
-const useFetchQuiz = () => {
+const useFetchQuiz = (categoryId) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,8 +10,18 @@ const useFetchQuiz = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await fetch(ApiConfig.QuizApiUrl);
+      const response = await fetch(
+        `${ApiConfig.QuizApiUrl}&category=${categoryId}`
+      );
       const result = await response.json();
+
+      if (result.response_code === 1) {
+        throw new Error("No Result Found!");
+      }
+
+      if (result.response_code === 5) {
+        throw new Error("Too many requests. Please try again after sometime.");
+      }
 
       const quizData = [];
 

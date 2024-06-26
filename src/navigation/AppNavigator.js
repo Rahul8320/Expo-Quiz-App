@@ -6,6 +6,7 @@ import ScoreScreen from "../screens/Score";
 import { TouchableOpacity, Text } from "react-native";
 import { AppContext } from "../context/AppContext";
 import { useState } from "react";
+import CategoryScreen from "../screens/Category";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ const AppNavigator = () => {
           screenOptions={{ contentStyle: { backgroundColor: "white" } }}
         >
           <Stack.Screen name="Splash" component={SplashScreen} />
+          <Stack.Screen name="Category" component={CategoryScreen} />
           <Stack.Screen
             name="Question"
             component={QuestionsScreen}
@@ -33,13 +35,7 @@ const AppNavigator = () => {
               ),
             })}
           />
-          <Stack.Screen
-            name="Score"
-            component={ScoreScreen}
-            options={() => ({
-              headerLeft: () => null, // Hides the back button
-            })}
-          />
+          <Stack.Screen name="Score" component={ScoreScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </AppContext.Provider>
